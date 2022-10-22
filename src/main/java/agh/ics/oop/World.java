@@ -35,7 +35,18 @@ public class World {
             };
         }
         run(message);
-        System.out.print("system zakończył działanie");
+        System.out.print("system zakończył działanie\n");
+
+        Vector2d position1 = new Vector2d(1,2);
+        System.out.println(position1);
+        Vector2d position2 = new Vector2d(-2,1);
+        System.out.println(position2);
+        System.out.println(position1.add(position2));
+        MapDirection dir = MapDirection.EAST;
+        System.out.println(dir.next());
+        System.out.println(dir.previous());
+        System.out.println(dir.toUnitVector());
+        System.out.println(dir.toString());
     }
 
 }
