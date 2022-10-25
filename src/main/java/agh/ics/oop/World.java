@@ -22,31 +22,45 @@ public class World {
         }
     }
     public static void main(String[] args) {
-        System.out.println("system wystartował");
-        int argsLen = args.length;
-        Direction[] message = new Direction[argsLen];
-        for(int i = 0; i < argsLen; i++) {
-            message[i] = switch (args[i]) {
-                case "f" -> Direction.FORWARD;
-                case "b" -> Direction.BACKWARD;
-                case "r" -> Direction.RIGHT;
-                case "l" -> Direction.LEFT;
-                default -> Direction.BAD_DIRECTION;
-            };
+        Animal  bear = new Animal();
+        System.out.print(bear.toString());
+        MoveDirection[] moves = OptionsParser.parse(args);
+        for(MoveDirection move : moves){
+            if(move != null)
+                bear.move(move);
         }
-        run(message);
-        System.out.print("system zakończył działanie\n");
-
-        Vector2d position1 = new Vector2d(1,2);
-        System.out.println(position1);
-        Vector2d position2 = new Vector2d(-2,1);
-        System.out.println(position2);
-        System.out.println(position1.add(position2));
-        MapDirection dir = MapDirection.EAST;
-        System.out.println(dir.next());
-        System.out.println(dir.previous());
-        System.out.println(dir.toUnitVector());
-        System.out.println(dir.toString());
+        System.out.print(bear.toString());
+//        bear.move(MoveDirection.RIGHT);
+//        bear.move(MoveDirection.FORWARD);
+//        bear.move(MoveDirection.FORWARD);
+//        bear.move(MoveDirection.FORWARD);
+//
+//        System.out.print(bear.toString());
+//        System.out.println("system wystartował");
+//        int argsLen = args.length;
+//        Direction[] message = new Direction[argsLen];
+//        for(int i = 0; i < argsLen; i++) {
+//            message[i] = switch (args[i]) {
+//                case "f" -> Direction.FORWARD;
+//                case "b" -> Direction.BACKWARD;
+//                case "r" -> Direction.RIGHT;
+//                case "l" -> Direction.LEFT;
+//                default -> Direction.BAD_DIRECTION;
+//            };
+//        }
+//        run(message);
+//        System.out.print("system zakończył działanie\n");
+//
+//        Vector2d position1 = new Vector2d(1,2);
+//        System.out.println(position1);
+//        Vector2d position2 = new Vector2d(-2,1);
+//        System.out.println(position2);
+//        System.out.println(position1.add(position2));
+//        MapDirection dir = MapDirection.EAST;
+//        System.out.println(dir.next());
+//        System.out.println(dir.previous());
+//        System.out.println(dir.toUnitVector());
+//        System.out.println(dir.toString());
     }
 
 }
