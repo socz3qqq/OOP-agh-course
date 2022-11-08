@@ -4,27 +4,15 @@ public class OptionsParser {
     public static MoveDirection[] parse(String[] moves){
         MoveDirection[] directionMoves = new MoveDirection[moves.length];
         for(int i = 0; i < moves.length; i ++){
-            switch(moves[i]){
-                case "f":
-                case "forward":
-                    directionMoves[i] = MoveDirection.FORWARD;
-                    break;
-                case "b":
-                case "backward":
-                    directionMoves[i] = MoveDirection.BACKWARD;
-                    break;
-                case "r":
-                case "right":
-                    directionMoves[i] = MoveDirection.RIGHT;
-                    break;
-                case "l":
-                case "left":
-                    directionMoves[i] = MoveDirection.LEFT;
-                    break;
-                default:
-                    break;
+            switch (moves[i]) {
+                case "f", "forward" -> directionMoves[i] = MoveDirection.FORWARD;
+                case "b", "backward" -> directionMoves[i] = MoveDirection.BACKWARD;
+                case "r", "right" -> directionMoves[i] = MoveDirection.RIGHT;
+                case "l", "left" -> directionMoves[i] = MoveDirection.LEFT;
+                default -> {
+
+                }
             }
-            System.out.println(directionMoves[i]);
         }
         return directionMoves;
     }

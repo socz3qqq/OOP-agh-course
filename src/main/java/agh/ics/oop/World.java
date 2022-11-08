@@ -1,5 +1,8 @@
 package agh.ics.oop;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class World {
     public static void run(Direction[] elements){
 //        int elementsLen = elements.length;
@@ -24,18 +27,23 @@ public class World {
     public static void main(String[] args) {
         Animal  bear = new Animal();
         System.out.print(bear.toString());
+
         MoveDirection[] moves = OptionsParser.parse(args);
         for(MoveDirection move : moves){
             if(move != null)
                 bear.move(move);
         }
         System.out.print(bear.toString());
+
 //        bear.move(MoveDirection.RIGHT);
 //        bear.move(MoveDirection.FORWARD);
 //        bear.move(MoveDirection.FORWARD);
 //        bear.move(MoveDirection.FORWARD);
 //
 //        System.out.print(bear.toString());
+//        List<String> strMoves = Arrays.asList(args);
+//        OptionsParser optionsParser = new OptionsParser();
+//        List<MoveDirection> moves = optionsParser.parse(args);
 //        System.out.println("system wystartował");
 //        int argsLen = args.length;
 //        Direction[] message = new Direction[argsLen];

@@ -15,6 +15,13 @@ public class Animal {
     public boolean isAt(Vector2d position) {
         return this.position.equals(position);
     }
+    public Vector2d getPosition(){
+        return position;
+    }
+    public MapDirection getDirection() {
+        return direction;
+    }
+
     public void move(MoveDirection direction){
         switch (direction){
             case RIGHT:
@@ -30,7 +37,7 @@ public class Animal {
                 }
                 break;
             case BACKWARD:
-                Vector2d backwardPosition = this.direction.toUnitVector().subtract(this.position);
+                Vector2d backwardPosition = this.position.subtract(this.direction.toUnitVector());
                 if(backwardPosition.precedes(new Vector2d(4,4)) && backwardPosition.follows(new Vector2d(0,0))){
                     this.position = backwardPosition;
                 }
