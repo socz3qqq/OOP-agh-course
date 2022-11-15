@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import java.util.List;
+
 public class World {
     public static void run(Direction[] elements){
 //        int elementsLen = elements.length;
@@ -12,30 +14,15 @@ public class World {
                 default -> {
                 }
             }
-//            System.out.print(elements[i]);
-//            if (i != elementsLen - 1) {
-//                System.out.print(",");
-//            }
-//            else{
-//                System.out.print("\n");
-//            }
         }
     }
     public static void main(String[] args) {
-        System.out.println("system wystartował");
-        int argsLen = args.length;
-        Direction[] message = new Direction[argsLen];
-        for(int i = 0; i < argsLen; i++) {
-            message[i] = switch (args[i]) {
-                case "f" -> Direction.FORWARD;
-                case "b" -> Direction.BACKWARD;
-                case "r" -> Direction.RIGHT;
-                case "l" -> Direction.LEFT;
-                default -> Direction.BAD_DIRECTION;
-            };
-        }
-        run(message);
-        System.out.print("system zakończył działanie");
+        List<MoveDirection> directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
+
     }
 
 }
