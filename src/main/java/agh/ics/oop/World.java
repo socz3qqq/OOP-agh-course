@@ -1,6 +1,5 @@
 package agh.ics.oop;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class World {
@@ -15,60 +14,15 @@ public class World {
                 default -> {
                 }
             }
-//            System.out.print(elements[i]);
-//            if (i != elementsLen - 1) {
-//                System.out.print(",");
-//            }
-//            else{
-//                System.out.print("\n");
-//            }
         }
     }
     public static void main(String[] args) {
-        Animal  bear = new Animal();
-        System.out.print(bear.toString());
+        List<MoveDirection> directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
 
-        MoveDirection[] moves = OptionsParser.parse(args);
-        for(MoveDirection move : moves){
-            if(move != null)
-                bear.move(move);
-        }
-        System.out.print(bear.toString());
-
-//        bear.move(MoveDirection.RIGHT);
-//        bear.move(MoveDirection.FORWARD);
-//        bear.move(MoveDirection.FORWARD);
-//        bear.move(MoveDirection.FORWARD);
-//
-//        System.out.print(bear.toString());
-//        List<String> strMoves = Arrays.asList(args);
-//        OptionsParser optionsParser = new OptionsParser();
-//        List<MoveDirection> moves = optionsParser.parse(args);
-//        System.out.println("system wystartował");
-//        int argsLen = args.length;
-//        Direction[] message = new Direction[argsLen];
-//        for(int i = 0; i < argsLen; i++) {
-//            message[i] = switch (args[i]) {
-//                case "f" -> Direction.FORWARD;
-//                case "b" -> Direction.BACKWARD;
-//                case "r" -> Direction.RIGHT;
-//                case "l" -> Direction.LEFT;
-//                default -> Direction.BAD_DIRECTION;
-//            };
-//        }
-//        run(message);
-//        System.out.print("system zakończył działanie\n");
-//
-//        Vector2d position1 = new Vector2d(1,2);
-//        System.out.println(position1);
-//        Vector2d position2 = new Vector2d(-2,1);
-//        System.out.println(position2);
-//        System.out.println(position1.add(position2));
-//        MapDirection dir = MapDirection.EAST;
-//        System.out.println(dir.next());
-//        System.out.println(dir.previous());
-//        System.out.println(dir.toUnitVector());
-//        System.out.println(dir.toString());
     }
 
 }

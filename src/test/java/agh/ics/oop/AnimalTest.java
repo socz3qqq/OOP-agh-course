@@ -3,6 +3,8 @@ package agh.ics.oop;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AnimalTest {
@@ -13,15 +15,15 @@ public class AnimalTest {
     static Animal testAnimal4 = new Animal();
     static Animal testAnimal5 = new Animal();
     static String[] strMoves1 = {"f", "f", "l"};
-    static MoveDirection[] moves1 = OptionsParser.parse(strMoves1);
+    static List<MoveDirection> moves1 = OptionsParser.parse(strMoves1);
     static String[] strMoves2 = {"f", "r", "r", "r", "r", "f", "left", "f", "f"};
-    static MoveDirection[] moves2 = OptionsParser.parse(strMoves2);
+    static List<MoveDirection> moves2 = OptionsParser.parse(strMoves2);
     static String[] strMoves3 = {"f", "left", "left", "f", "f", "left", "l", "b", "b"};
-    static MoveDirection[] moves3 = OptionsParser.parse(strMoves3);
+    static List<MoveDirection> moves3 = OptionsParser.parse(strMoves3);
     static String[] strMoves4 = {"left", "f", "f", "f", "f", "right", "right"};
-    static MoveDirection[] moves4 = OptionsParser.parse(strMoves4);
+    static List<MoveDirection> moves4 = OptionsParser.parse(strMoves4);
     static String[] strMoves5 = {"f", "f", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f"};
-    static MoveDirection[] moves5 = OptionsParser.parse(strMoves5);
+    static List<MoveDirection> moves5 = OptionsParser.parse(strMoves5);
 
     @BeforeAll
     static void prepare() {
