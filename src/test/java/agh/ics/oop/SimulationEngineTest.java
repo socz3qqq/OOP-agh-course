@@ -24,7 +24,7 @@ class SimulationEngineTest {
         Vector2d position1 = engine.animals.get(1).getPosition();
         MapDirection direction0 = engine.animals.get(0).getDirection();
         MapDirection direction1 = engine.animals.get(1).getDirection();
-        
+
 //      then
         assertEquals(new Vector2d(2, 0), position0);
         assertEquals(new Vector2d(3, 4), position1);
