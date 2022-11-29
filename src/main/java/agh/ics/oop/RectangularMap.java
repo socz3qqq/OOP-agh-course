@@ -8,7 +8,4 @@ public class RectangularMap extends AbstractWorldMap{
         super();
         upperRightBound = new Vector2d(width-1, height-1);
     }
-//    public static List<Animal> getAnimals(){
-//        return animals;
-//    }
 }

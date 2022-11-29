@@ -1,15 +1,18 @@
 package agh.ics.oop;
 
-public class Animal implements IMapElement{
-    private MapDirection direction = MapDirection.NORTH;
-    private Vector2d position = new Vector2d(2, 2);
-    private IWorldMap map;
-    public Animal(){
+import java.util.ArrayList;
+import java.util.List;
 
-    }
+public class Animal extends AbstractWorldMapElement{
+    private MapDirection direction;
+    private IWorldMap map;
+    private List<IPositionChangeObserver> observers = new ArrayList<>();
+
     public Animal(IWorldMap map, Vector2d initialPosition){
+        super(initialPosition);
         this.map = map;
-        this.position = initialPosition;
+        this.direction = MapDirection.NORTH;
+//        addObserver((IPositionChangeObserver) map);
     }
 
     @Override
@@ -38,6 +41,20 @@ public class Animal implements IMapElement{
     @Override
     public Vector2d getPosition(){return position;}
     public MapDirection getDirection(){return direction;}
+    public void addObserver(IPositionChangeObserver observer){
+        this.observers.add(observer);
+    }
+    public void removeObserver(IPositionChangeObserver observer){
+        this.observers.remove(observer);
+    }
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition){
+        for (IPositionChangeObserver observer : this.observers){
+            observer.positionChanged(oldPosition, newPosition);
+        }
+    }
+    public void changePosition(Vector2d newPosition){
+        this.position = newPosition;
+    }
 
     public void move(MoveDirection direction){
         switch (direction) {
@@ -45,18 +62,17 @@ public class Animal implements IMapElement{
             case LEFT -> this.direction = this.direction.previous();
             case FORWARD -> {
                 Vector2d forwardPosition = this.direction.toUnitVector().add(this.position);
-//                if (forwardPosition.precedes(new Vector2d(4, 4)) && forwardPosition.follows(new Vector2d(0, 0))) {
-//                    this.position = forwardPosition;
-//                }
                 if (this.map.canMoveTo(forwardPosition)) {
-                    this.position = forwardPosition;
+                    this.positionChanged(this.getPosition(), forwardPosition);
+                    this.changePosition(forwardPosition);
                 }
 
             }
             case BACKWARD -> {
                 Vector2d backwardPosition = this.position.subtract(this.direction.toUnitVector());
                 if (this.map.canMoveTo(backwardPosition)) {
-                    this.position = backwardPosition;
+                    this.positionChanged(this.getPosition(), backwardPosition);
+                    this.changePosition(backwardPosition);
                 }
             }
             default -> {

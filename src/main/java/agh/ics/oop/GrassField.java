@@ -1,15 +1,15 @@
 package agh.ics.oop;
 
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
-
 import static java.lang.Math.sqrt;
+import java.util.HashMap;
 
 public class GrassField extends AbstractWorldMap{
     private final int grassBound;
 
     private final Random rand = new Random();
-    private ArrayList<Grass> grassTiles = new ArrayList<>();
+    private final Map<Vector2d, Grass> grassTiles = new HashMap<>();
 
     public GrassField(int count){
         grassBound = (int) sqrt(count*10);
@@ -26,31 +26,22 @@ public class GrassField extends AbstractWorldMap{
         do{
             x = rand.nextInt(grassBound);
             y = rand.nextInt(grassBound);
-        } while(isOccupied(new Vector2d(x, y)));
-        Grass grass = new Grass(new Vector2d(x, y)) ;
-        this.grassTiles.add(grass);
+        }
+        while(isOccupied(new Vector2d(x, y)));
+
+        Vector2d grassPosition = new Vector2d(x, y);
+        Grass grass = new Grass(grassPosition) ;
+        this.grassTiles.put(grassPosition, grass);
     }
 
     @Override
-    public boolean isOccupied(Vector2d position){
-        for (Grass grass:grassTiles){
-            if(grass.getPosition().equals(position)){
-                return true;
-            }
-        }
-        return super.isOccupied(position);
+    public boolean isOccupied(Vector2d pos){
+        return grassTiles.containsKey(pos) || super.isOccupied(pos);
     }
 
     @Override
     public Object objectAt(Vector2d position) {
-        Object o = super.objectAt(position);
-        if (o == null){
-            for(Grass grass: this.grassTiles){
-                if(grass.getPosition().equals(position)){
-                    return grass;
-                }
-            }
-        }
-        return o;
+        Object animal = super.objectAt(position);
+        return (animal == null) ? grassTiles.getOrDefault(position, null):animal;
     }
 }

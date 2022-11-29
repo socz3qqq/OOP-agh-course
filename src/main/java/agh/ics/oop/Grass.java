@@ -1,13 +1,7 @@
 package agh.ics.oop;
-
-public class Grass implements IMapElement{
-    Vector2d position;
+public class Grass extends AbstractWorldMapElement {
     public Grass(Vector2d grassPosition){
-        position = grassPosition;
-    }
-    @Override
-    public Vector2d getPosition(){
-        return this.position;
+        super(grassPosition);
     }
 
     @Override
