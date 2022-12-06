@@ -1,18 +1,24 @@
-package agh.ics.oop;
+package agh.ics.oop.MapElements;
+
+import agh.ics.oop.*;
+import agh.ics.oop.MapTypes.IWorldMap;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal extends AbstractWorldMapElement{
+public class Animal extends AbstractWorldMapElement {
     private MapDirection direction;
     private IWorldMap map;
     private List<IPositionChangeObserver> observers = new ArrayList<>();
 
+    public Animal(){
+        super(new Vector2d(0,0 ));
+        this.direction = MapDirection.NORTH;
+    }
     public Animal(IWorldMap map, Vector2d initialPosition){
         super(initialPosition);
         this.map = map;
         this.direction = MapDirection.NORTH;
-//        addObserver((IPositionChangeObserver) map);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package agh.ics.oop;
 
-enum MapDirection {
+public enum MapDirection {
     NORTH,
     EAST,
     SOUTH,
@@ -15,7 +15,7 @@ enum MapDirection {
             case SOUTH -> "Południe";
         };
     }
-    MapDirection next(){
+    public MapDirection next(){
         return switch (this) {
             case EAST -> SOUTH;
             case WEST -> NORTH;
@@ -23,7 +23,7 @@ enum MapDirection {
             case SOUTH -> WEST;
         };
     }
-    MapDirection previous(){
+    public MapDirection previous(){
         return switch (this) {
             case EAST -> NORTH;
             case WEST -> SOUTH;
@@ -31,7 +31,7 @@ enum MapDirection {
             case SOUTH -> EAST;
         };
     }
-    Vector2d toUnitVector() {
+    public Vector2d toUnitVector() {
         return switch (this) {
             case EAST -> new Vector2d(1, 0);
             case WEST -> new Vector2d(-1, 0);
